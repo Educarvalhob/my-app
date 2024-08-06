@@ -3,6 +3,8 @@ package com.example.application.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.application.model.Categoria;
 import com.example.application.model.ListaTarefas;
@@ -123,5 +125,43 @@ public class ListaTarefasDAO {
 				e.printStackTrace();
 			return null;
 		}
+	}
+
+	public List<ListaTarefas> pesquisarTodos() {
+		
+		List<ListaTarefas> lista = new ArrayList<>();
+		
+		try {
+		
+			Connection connection = DBConnection.getInstance().getConnection();
+		
+			String consulta = "SELECT * from lista_tarefas";
+		
+			ListaTarefas listaTarefa;
+		
+			PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				listaTarefa = new ListaTarefas();
+				listaTarefa.setId(resultSet.getInt("id"));
+				listaTarefa.setData_tarefa(resultSet.getString("data_tarefa"));
+				listaTarefa.setDescricao_tarefa(resultSet.getString("descricao_tarefa"));
+				listaTarefa.setObservacao(resultSet.getString("observacao"));
+				Prioridade prioridade = new PrioridadeDAO().pesquisar(resultSet.getInt("idPrioridade"));
+				Categoria categoria = new CategoriaDAO().pesquisar(resultSet.getInt("idCategoriaTarefa"));
+				Responsavel responsavel = new ResponsavelDAO().pesquisar(resultSet.getInt("idResponsavel")); 
+				Status status = new StatusDAO().pesquisar(resultSet.getInt("idStatus"));                  
+				listaTarefa.setPrioridade_tarefa(prioridade);
+				listaTarefa.setCategoria_tarefa(categoria);
+				listaTarefa.setResponsavel_tarefa(responsavel);
+				listaTarefa.setStatus_tarefa(status);
+				lista.add(listaTarefa);
+			}
+
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		
+		return lista;
 	}
 }

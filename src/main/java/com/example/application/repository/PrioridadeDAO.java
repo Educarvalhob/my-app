@@ -3,6 +3,8 @@ package com.example.application.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.application.model.Prioridade;
 
@@ -102,4 +104,32 @@ public class PrioridadeDAO {
 			return null;
 		}
 	}
+
+	public List<Prioridade> pesquisarTodos() {
+        try {
+            
+			Connection connection = DBConnection.getInstance().getConnection();
+            
+			String consulta = "SELECT * from prioridade";
+            
+			List<Prioridade> lista = new ArrayList<Prioridade>();
+            
+			Prioridade prioridade;
+            
+			PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                prioridade = new Prioridade();
+                prioridade.setId(resultSet.getInt("id"));
+                prioridade.setDescricao(resultSet.getString("descricao"));
+                lista.add(prioridade);
+            }
+            
+			return lista;
+
+        }catch (Exception e) {
+           		e.printStackTrace();
+            return null;
+        }
+    }
 }

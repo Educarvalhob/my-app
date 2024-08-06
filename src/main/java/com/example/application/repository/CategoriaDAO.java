@@ -3,6 +3,8 @@ package com.example.application.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.application.model.Categoria;
 
@@ -102,4 +104,32 @@ public class CategoriaDAO {
 			return null;
 		}
 	}
+
+	public List<Categoria> pesquisarTodos() {
+        try {
+            
+			Connection connection = DBConnection.getInstance().getConnection();
+            
+			String consulta = "SELECT * from categoria";
+            
+			List<Categoria> lista = new ArrayList<Categoria>();
+            
+			Categoria categoria;
+            
+			PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                categoria = new Categoria();
+                categoria.setId(resultSet.getInt("id"));
+                categoria.setDescricao(resultSet.getString("descricao"));
+                lista.add(categoria);
+            }
+
+            return lista;
+
+        } catch (Exception e) {
+            	e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -3,6 +3,8 @@ package com.example.application.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.application.model.Responsavel;
 
@@ -102,4 +104,32 @@ public class ResponsavelDAO {
 			return null;
 		}
 	}
+
+	public List<Responsavel> pesquisarTodos() {
+        try {
+            
+			Connection connection = DBConnection.getInstance().getConnection();
+            
+			String consulta = "SELECT * from responsavel";
+            
+			List<Responsavel> lista = new ArrayList<Responsavel>();
+            
+			Responsavel responsavel;
+            
+			PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                responsavel = new Responsavel();
+                responsavel.setId(resultSet.getInt("id"));
+                responsavel.setNome(resultSet.getString("nome"));
+                lista.add(responsavel);
+            }
+            
+			return lista;
+
+        }catch (Exception e) {
+            	e.printStackTrace();
+            return null;
+        }
+    }
 }
