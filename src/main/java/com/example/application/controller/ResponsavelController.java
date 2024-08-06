@@ -18,7 +18,7 @@ public class ResponsavelController {
         return dao.excluir(responsavel);
     }
 
-    public boolean pesquisar(Responsavel responsavel){
-        return dao.pesquisar(responsavel);
+    public Responsavel pesquisar(Responsavel responsavel){
+        return dao.pesquisar(responsavel.getId());
     }
 }

@@ -18,7 +18,7 @@ public class CategoriaController {
         return dao.excluir(categoria);
     }
 
-    public boolean pesquisar(Categoria categoria){
-        return dao.pesquisar(categoria);
+    public Categoria pesquisar(Categoria categoria){
+        return dao.pesquisar(categoria.getId());
     }
 }

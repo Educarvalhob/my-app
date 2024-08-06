@@ -18,7 +18,7 @@ public class ListaTarefasController {
         return dao.excluir(listaTarefas);
     }
 
-    public boolean pesquisar(ListaTarefas listaTarefas){
-        return dao.pesquisar(listaTarefas);
+    public ListaTarefas pesquisar(ListaTarefas listaTarefas){
+        return dao.pesquisar(listaTarefas.getId());
     }
 }

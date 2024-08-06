@@ -18,7 +18,7 @@ public class StatusController {
         return dao.excluir(status);
     }
 
-    public boolean pesquisar(Status status){
-        return dao.pesquisar(status);
+    public Status pesquisar(Status status){
+        return dao.pesquisar(status.getId());
     }
 }

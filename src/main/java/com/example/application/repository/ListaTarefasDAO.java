@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.management.Notification;
-
 import com.example.application.model.Categoria;
 import com.example.application.model.ListaTarefas;
 import com.example.application.model.Prioridade;
@@ -37,11 +35,7 @@ public class ListaTarefasDAO {
 				return false;
 			}
 		} catch(Exception e) {
-			System.out.print(e.getMessage());
-            Notification notification = new Notification(
-                    "Erro ao salvar. Por favor, verifique a mensagem à seguir: " + e.getMessage());
-            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            notification.open();
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -72,6 +66,7 @@ public class ListaTarefasDAO {
 				return false;
 			}
 		}catch(Exception e) {
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -94,6 +89,7 @@ public class ListaTarefasDAO {
 			}
 			
 		}catch(Exception e) {
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -124,6 +120,7 @@ public class ListaTarefasDAO {
 			return listaTarefas;
 			
 		}catch(Exception e) {
+				e.printStackTrace();
 			return null;
 		}
 	}

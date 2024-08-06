@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.management.Notification;
-
 import com.example.application.model.Categoria;
 
 public class CategoriaDAO {
@@ -27,11 +25,7 @@ public class CategoriaDAO {
 				return false;
 			}
 		} catch(Exception e) {
-			System.out.print(e.getMessage());
-            Notification notification = new Notification(
-                    "Erro ao salvar. Por favor, verifique a mensagem à seguir: " + e.getMessage());
-            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            notification.open();
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -56,6 +50,7 @@ public class CategoriaDAO {
 				return false;
 			}
 		}catch(Exception e) {
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -78,6 +73,7 @@ public class CategoriaDAO {
 			}
 			
 		}catch(Exception e) {
+				e.printStackTrace();
 			return false;
 		}
 	}
@@ -102,6 +98,7 @@ public class CategoriaDAO {
 			return categoria;
 			
 		}catch(Exception e) {
+				e.printStackTrace();
 			return null;
 		}
 	}

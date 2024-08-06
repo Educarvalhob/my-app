@@ -18,7 +18,7 @@ public class PrioridadeController {
         return dao.excluir(prioridade);
     }
 
-    public boolean pesquisar(Prioridade prioridade){
-        return dao.pesquisar(prioridade);
+    public Prioridade pesquisar(Prioridade prioridade){
+        return dao.pesquisar(prioridade.getId());
     }
 }
