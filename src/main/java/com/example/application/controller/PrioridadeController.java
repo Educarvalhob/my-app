@@ -1,6 +1,9 @@
 package com.example.application.controller;
 
 import com.example.application.repository.PrioridadeDAO;
+
+import java.util.List;
+
 import com.example.application.model.Prioridade;
 
 public class PrioridadeController {
@@ -20,5 +23,9 @@ public class PrioridadeController {
 
     public Prioridade pesquisar(Prioridade prioridade){
         return dao.pesquisar(prioridade.getId());
+    }
+
+    public List<Prioridade> pesquisarTodos(){
+        return dao.pesquisarTodos();
     }
 }

@@ -1,6 +1,9 @@
 package com.example.application.controller;
 
 import com.example.application.repository.ListaTarefasDAO;
+
+import java.util.List;
+
 import com.example.application.model.ListaTarefas;
 
 public class ListaTarefasController {
@@ -20,5 +23,9 @@ public class ListaTarefasController {
 
     public ListaTarefas pesquisar(ListaTarefas listaTarefas){
         return dao.pesquisar(listaTarefas.getId());
+    }
+
+    public List<ListaTarefas> pesquisarTodos(){
+        return dao.pesquisarTodos();
     }
 }

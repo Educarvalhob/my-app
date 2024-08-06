@@ -1,6 +1,9 @@
 package com.example.application.controller;
 
 import com.example.application.repository.ResponsavelDAO;
+
+import java.util.List;
+
 import com.example.application.model.Responsavel;
 
 public class ResponsavelController {
@@ -20,5 +23,9 @@ public class ResponsavelController {
 
     public Responsavel pesquisar(Responsavel responsavel){
         return dao.pesquisar(responsavel.getId());
+    }
+
+    public List<Responsavel> pesquisarTodos(){
+        return dao.pesquisarTodos();
     }
 }

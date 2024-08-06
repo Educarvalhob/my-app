@@ -1,6 +1,9 @@
 package com.example.application.controller;
 
 import com.example.application.repository.StatusDAO;
+
+import java.util.List;
+
 import com.example.application.model.Status;
 
 public class StatusController {
@@ -20,5 +23,9 @@ public class StatusController {
 
     public Status pesquisar(Status status){
         return dao.pesquisar(status.getId());
+    }
+
+    public List<Status> pesquisarTodos(){
+        return dao.pesquisarTodos();
     }
 }

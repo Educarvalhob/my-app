@@ -1,6 +1,9 @@
 package com.example.application.controller;
 
 import com.example.application.repository.CategoriaDAO;
+
+import java.util.List;
+
 import com.example.application.model.Categoria;
 
 public class CategoriaController {
@@ -20,5 +23,9 @@ public class CategoriaController {
 
     public Categoria pesquisar(Categoria categoria){
         return dao.pesquisar(categoria.getId());
+    }
+
+    public List<Categoria> pesquisarTodos(){
+        return dao.pesquisarTodos();
     }
 }
